@@ -30,4 +30,6 @@ func main() {
     var isOk bool
     isOk = true
     fmt.Println("isOk:", isOk)
+
+	fmt.Printf("%T",   num1)
 }
