@@ -1,6 +1,8 @@
 package main
 
 import "fmt"
+var name = "faiyaz"
+// name := "faiyaz"  (WRONG!!!!! only inside func) 
 func main(){
 
 
@@ -8,7 +10,7 @@ func main(){
 	var str string; //default value : ""
 	var isBoolean bool; //default value : false
 
-	fmt.Printf("%d-%s-%t",num,str,isBoolean); //  0 --false
+	fmt.Printf("%d-%s-%t-%s",num,str,isBoolean,name); //  0 --false
 
 	
 }
