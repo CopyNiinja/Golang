@@ -1,6 +1,6 @@
 package main
 
-//LIKE C,C++ NO POINTER ARITHMETIC IN GO :(
+//UNLIKE C,C++ NO POINTER ARITHMETIC IN GO :(
 import "fmt"
 func main(){
 
