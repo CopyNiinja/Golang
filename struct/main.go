@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
@@ -19,8 +20,11 @@ type Admin struct {
 	 createdAt time.Time 
 }
 
-func newAdmin(fname,lname,bio string,age int)Admin{
- return Admin{firstName: fname,lastName: lname,bio: bio,age: age,createdAt: time.Now()}
+func newAdmin(fname,lname,bio string,age int)(*Admin,error){
+	if(fname=="" && lname==""){
+     return nil,errors.New("Firstname and lastname are required!!")
+	}
+ return &Admin{firstName: fname,lastName: lname,bio: bio,age: age,createdAt: time.Now()},nil
 }
 
 func main(){
@@ -46,7 +50,7 @@ func main(){
 
 	//
 	var admin1 = Admin{ firstName: "Faiyaz",lastName:"Ahmed",bio: "dsd",age: 26,createdAt: time.Now()}
-   admin2 := newAdmin("Mushfiqur","Rahim","hehehe",43);
+   var admin2  ,err= newAdmin("Mushfiqur","Rahim","hehehe",43);
 	fmt.Println(admin1)
-	fmt.Println(admin2)
+	fmt.Println(*admin2,err);
 }
