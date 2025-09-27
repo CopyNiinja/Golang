@@ -2,9 +2,11 @@ package main
 
 import "fmt"
 
-//defer use a stack (LIFO) .
+//When a function is about to return, Go executes all deferred functions in reverse order (LIFO).
 //defer waits till the function ends
 // WHen ypu open a folder immediately you can defer fs.close()  it will execute after the function end!!
+//file, _ := os.Open("test.txt")
+//defer file.Close() // ensures it closes no matter where return happens
 
 func main(){
 
