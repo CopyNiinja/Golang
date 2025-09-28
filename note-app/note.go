@@ -11,77 +11,72 @@ const FILE_LOCATION = "notes.json"
 
 var TOTAL_NOTES = 0
 
-type Notes map[int]Note;
+type Notes map[int]Note
 
-func getAllNotes()Notes {
-	var notes Notes;
-file,err:=os.Open(FILE_LOCATION);
- 
-   if ErrorHandling(err){
-	panic(err)
-   }
-    defer file.Close()
-   decoder:=json.NewDecoder(file);
+func getAllNotes() Notes {
+	var notes Notes
+	file, err := os.Open(FILE_LOCATION)
 
-   decoder.Decode(&notes);
-   return notes;
-   
+	if ErrorHandling(err) {
+		panic(err)
+	}
+	defer file.Close()
+	decoder := json.NewDecoder(file)
+
+	decoder.Decode(&notes)
+	return notes
+
 }
 
 func showAllNotes() {
-	notes:=getAllNotes();
-	
-   for i,val := range notes{
-	fmt.Println("-----------------------------------------")
-		fmt.Printf("%d.Title:%s\nDescription:%s\n",i,val.Title,val.Description);
-	fmt.Println("-----------------------------------------")
+	notes := getAllNotes()
+
+	for i, val := range notes {
+		fmt.Println("-----------------------------------------")
+		fmt.Printf("%d.Title:%s\nDescription:%s\n", i, val.Title, val.Description)
+		fmt.Println("-----------------------------------------")
 	}
-     
 
 }
 
 func createANote() {
-//note input
+	//note input
 
-  note:=getNoteTitleAndDescription();
+	note := getNoteTitleAndDescription()
 
-  notes :=getAllNotes();
-  length :=len(notes);
-  
-  //append the note
-  notes[length+1]=note;
+	notes := getAllNotes()
+	length := len(notes)
 
-//file operation
-   file,err:= os.OpenFile(FILE_LOCATION, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644);
-   
-   if ErrorHandling(err){
-	delete(notes,length+1);
-	return
-   }
-   defer file.Close();
-   encoder := json.NewEncoder(file);
-   encoder.SetIndent(""," ");
-   err2:= encoder.Encode(notes);
+	//append the note
+	notes[length+1] = note
 
-   if ErrorHandling(err2){
-	delete(notes,length+1);
-	return
-   }
+	//file operation
+	file, err := os.OpenFile(FILE_LOCATION, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
 
-   fmt.Println("Successfully added note.")
-  
-   
+	if ErrorHandling(err) {
+		delete(notes, length+1)
+		return
+	}
+	defer file.Close()
+	encoder := json.NewEncoder(file)
+	encoder.SetIndent("", " ")
+	err2 := encoder.Encode(notes)
 
+	if ErrorHandling(err2) {
+		delete(notes, length+1)
+		return
+	}
+
+	fmt.Println("Successfully added note.")
 
 }
 
-
 //Error handling
-func ErrorHandling(e error)bool{
-  if e!=nil{
-	fmt.Println(e);
-	fmt.Println(errors.New("there was an error"))
-	return true
-  }
-  return false
+func ErrorHandling(e error) bool {
+	if e != nil {
+		fmt.Println(e)
+		fmt.Println(errors.New("there was an error"))
+		return true
+	}
+	return false
 }
