@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -12,10 +14,16 @@ func main() {
  
 
 	for{
-		var choice int;
+		
         //
 		PrintOptions();
-       choice=getUserChoice("Your choice:")
+		input := strings.TrimSpace(getUserInput("Your choice:"))
+        choice, err := strconv.Atoi(input)
+		if err != nil {
+			fmt.Println("Invalid choice, try again.")
+			continue
+			}
+      
 
 	   //
 	   switch choice{

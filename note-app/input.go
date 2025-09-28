@@ -29,14 +29,3 @@ func getUserInput(prompt string)string{
 	return input
 
 }
-func getUserChoice(prompt string)int{
-     //variables
-	
-	 var input int;
-	fmt.Println(prompt)
-	
-   fmt.Scan(&input);
-	
-	return input
-
-}
