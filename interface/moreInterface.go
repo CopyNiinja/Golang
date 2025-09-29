@@ -20,3 +20,7 @@ func ToString(val interface{})interface{} {
 	}
 
 }
+//Any Type (like typescript)
+func PrintAnything(val any){
+ fmt.Println(val)
+}

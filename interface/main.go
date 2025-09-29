@@ -69,6 +69,11 @@ func main() {
 	fmt.Printf("%T",ToString(f1))//string
 	fmt.Printf("%T",ToString(i1))//string
 
+	//Any type
+	PrintAnything(10)//10
+	PrintAnything("red")//red
+	PrintAnything(true)//true
+
 }
 	type Shape interface {
 		Area() float64;
