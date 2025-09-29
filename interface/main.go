@@ -62,7 +62,13 @@ func main() {
 
 	//SO basically we will use them individually .. if the same code should run for different types. we can make a interface. and put the function parameter as Interface type , use one single function for deferent types arguments. Just they need to have the same method that interface has.
 
-	//
+	//type switch
+	var f1 float64 = 3.41;
+	var i1 int = 73;
+
+	fmt.Printf("%T",ToString(f1))//string
+	fmt.Printf("%T",ToString(i1))//string
+
 }
 	type Shape interface {
 		Area() float64;
@@ -87,7 +93,7 @@ func main() {
 		return s.Area();
 	}
 
-	
+
 
 
     
