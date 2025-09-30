@@ -16,6 +16,9 @@ func doubleOrTriple(numbers *[]int,multiplier func(int)int) []int{
 
 }
 
+//function type can be annoying. so a custom type:
+type multiplierFn func(int)int
+
 func main() {
 	fmt.Println("Function as argument")
 	//number slice
@@ -31,7 +34,8 @@ func main() {
 	}
      
 	//2x 
-	fmt.Println(doubleOrTriple(&numbers,doubleMultiplier)) //[2 4 6 8 10 12 14 16]
+	fmt.Println(doubleOrTriple(&numbers,doubleMultiplier)) //[2 4 6 8 10 12 14 16] or another way
+	fmt.Println(doubleOrTriple(&numbers,func(i int) int {return i*2})) //[2 4 6 8 10 12 14 16]
 
 	//3x
 	fmt.Println(doubleOrTriple(&numbers,tripleMultiplier)) //[3 6 9 12 15 18 21 24]
